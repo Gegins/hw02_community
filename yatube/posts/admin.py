@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Group
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -10,6 +10,11 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-admin.site.register(Post, PostAdmin)
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'description')
+    search_fields = ('title', 'description')
 
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Group, GroupAdmin)
 # Register your models here.

@@ -1,10 +1,18 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-from groups.models import Group
+class Group(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=20, unique=True)
+    description = models.TextField()
 
-# Create your models here.
+    def __str__(self):
+        return self.title
+
 User = get_user_model()
+
+
+
 
 
 class Post(models.Model):
@@ -22,3 +30,7 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.text
+
+
+
+
