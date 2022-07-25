@@ -11,10 +11,9 @@ def index(request):
 
 
 def group_posts(request, slug):
-    return 1
-#    template = 'posts/group_list.html'
-#    group = get_object_or_404(Group, slug=slug)
-#    posts = group.posts.all()[:10]
-#    title = f'Записи сообщества {group}'
-#    context = {'title': title, 'group': group, 'posts': posts}
-#    return render(request, template, context)
+    template = 'posts/group_list.html'
+    group = get_object_or_404(Group, slug=slug)
+    posts = group.posts.all()[:10]
+    title = f'Записи сообщества {group}'
+    context = {'title': title, 'group': group, 'posts': posts}
+    return render(request, template, context)
