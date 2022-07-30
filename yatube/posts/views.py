@@ -20,6 +20,6 @@ def group_posts(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     title = f'Записи сообщества {group}'
-    posts = posts = group.posts.all()[:10]
+    posts = group.posts.all()[:10]
     context = {'title': title, 'group': group, 'posts': posts}
     return render(request, template, context)
