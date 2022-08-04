@@ -34,9 +34,11 @@
       {% endblock %}
     </header>
     <main>
+      {% include 'posts/includes/paginator.html' %}
       {% block content %}
         С контентом напряженка!
       {% endblock %}
+      {% include 'posts/includes/paginator.html' %}
     </main>
     <footer>
       {% block footer %}

@@ -1,0 +1,57 @@
+<!-- templates/posts/create_post.html -->
+{% extends 'base.html' %}
+{% block title%}
+  {{ title }}
+{% endblock %}
+{% block content %}
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8 p-5">
+            <div class="card">
+              <div class="card-header">
+                {{ title }}             
+              </div>
+              <div class="card-body">        
+                <form method="post" action = "{% if is_edit %}
+                  {% url 'posts:post_edit' post.pk %}{% else %}
+                  {% url 'posts:post_create' %}{% endif %}"
+                  <input type="hidden" name="csrfmiddlewaretoken" value="">
+                  {% csrf_token %}            
+                  <div class="form-group row my-3 p-3">
+                    <label for="id_text">
+                      Текст поста                  
+                      <span class="required text-danger" >*</span>                  
+                    </label>
+                    <textarea name="text" cols="40"
+                      rows="10" class="form-control"
+                      required id="id_text">{{ post.text }}</textarea>                
+                    <small id="id_text-help" class="form-text text-muted">
+                      Новый текст поста
+                    </small>                  
+                  </div>            
+                  <div class="form-group row my-3 p-3">
+                    <label for="id_group">
+                      Группа                  
+                    </label>
+                    <select name="group" class="form-control" id="id_group">
+                      <option value="" selected>---------</option>
+                      <option value="1" selected>Всепогодная</option>
+                      <option value="2" selected>О жизненных трудностях</option>
+                      <option value="3" selected>О хорошем</option>
+                    </select>
+                    <small id="id_group-help" class="form-text text-muted">
+                      Группа, к которой будет относиться пост
+                    </small>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">
+                      {{ confirm }}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
